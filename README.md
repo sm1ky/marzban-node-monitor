@@ -33,6 +33,10 @@
     MARZBAN_PASSWORD=your_password
     TELEGRAM_TOKEN=your_telegram_bot_token
     TELEGRAM_CHAT_ID=your_telegram_chat_id
+    REDIS_HOST=127.0.0.1
+    REDIS_PORT=6379
+    REDIS_DB=1
+    REDIS_PASSWORD=PASSWORD
     ```
 
 3. Запустите Docker-контейнер:
