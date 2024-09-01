@@ -1,6 +1,25 @@
+networks:
+  monitor_network:
+    driver: bridge
+    internal: true  
+
 services:
   marzban-monitor:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     env_file: .env
     restart: unless-stopped
-    network_mode: host
+    networks:
+      - monitor_network
+    volumes:
+      - .:/app
+
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    command: redis-server --requirepass ${REDIS_PASSWORD} --bind 0.0.0.0 --port ${REDIS_PORT} --databases ${REDIS_DB}
+    networks:
+      - monitor_network

@@ -1,3 +1,4 @@
+
 # Marzban Node Monitor
 
 ## Описание
@@ -15,9 +16,20 @@
 - **Python 3.11** — основной язык программирования.
 - **HTTPX** — библиотека для выполнения HTTP-запросов.
 - **Docker** — для контейнеризации и удобного развертывания микросервиса.
+- **Redis** — используется для кеширования данных.
 - **dotenv** — для безопасного хранения конфиденциальных данных (токены, пароли и пр.).
 
 ## Установка и использование
+
+### Установка Docker
+
+Для установки Docker выполните следующую команду:
+
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+```
+
+### Настройка проекта
 
 1. Клонируйте репозиторий:
     ```bash
@@ -33,15 +45,47 @@
     MARZBAN_PASSWORD=your_password
     TELEGRAM_TOKEN=your_telegram_bot_token
     TELEGRAM_CHAT_ID=your_telegram_chat_id
-    REDIS_HOST=127.0.0.1
+    REDIS_HOST=redis
     REDIS_PORT=6379
     REDIS_DB=1
     REDIS_PASSWORD=PASSWORD
     ```
 
-3. Запустите Docker-контейнер:
+### Создание сети Docker
+
+Перед запуском проекта создайте сеть Docker. Для этого выполните команду:
+
+```bash
+docker network create monitor_network
+```
+
+### Запуск Docker-контейнеров
+
+Для запуска микросервиса и Redis выполните команду:
+
+```bash
+docker compose up -d
+```
+
+Docker автоматически создаст сеть `monitor_network`, если она не была создана ранее, и запустит контейнеры в этой сети.
+
+### Обновление проекта
+
+Чтобы обновить проект после изменения данных в репозитории, выполните следующие шаги:
+
+1. Перейдите в директорию проекта:
     ```bash
-    docker-compose up --build
+    cd marzban-node-monitor
+    ```
+
+2. Получите последние изменения из репозитория:
+    ```bash
+    git pull origin production
+    ```
+
+3. Перезапустите контейнеры без необходимости повторной сборки образов:
+    ```bash
+    docker compose up -d
     ```
 
 ## Лицензия
