@@ -38,7 +38,7 @@ class MarzbanAPI:
                     "password": Config.MARZBAN_PASSWORD,
                 },
                 headers={"Content-Type": "application/x-www-form-urlencoded"},
-                timeout=30.0  # Увеличение таймаута до 30 секунд
+                timeout=30.0
             )
             response.raise_for_status()
             token_data = response.json()

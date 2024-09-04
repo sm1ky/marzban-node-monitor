@@ -1,1 +1,1 @@
-autopep8 --in-place --aggressive --aggressive --recursive --max-line-length=88 .
+autopep8 --in-place --aggressive --aggressive --recursive --max-line-length=88 . --exclude venv,.github,.git
