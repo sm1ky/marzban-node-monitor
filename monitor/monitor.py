@@ -83,7 +83,8 @@ class NodeMonitor:
                                 "%Y-%m-%d %H:%M:%S"
                             )
                             logging.info(
-                                f"Узел {node_name} восстановлен через {downtime_minutes} минут."
+                                f"Узел {node_name} восстановлен через "
+                                f"{downtime_minutes} минут."
                             )
                             self.notifier.send_message(
                                 Responses.get_message(
@@ -101,7 +102,8 @@ class NodeMonitor:
                     if current_status not in ["connected", "disabled"]:
                         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                         logging.warning(
-                            f"Узел {node_name} ({node_ip}) отключен. Попытка переподключения в {timestamp}..."
+                            f"Узел {node_name} ({node_ip}) отключен. "
+                            f"Попытка переподключения в {timestamp}..."
                         )
 
                         if self.redis.get(node_redis_key) != b"disconnected":
@@ -143,7 +145,8 @@ class NodeMonitor:
                                     downtime_minutes = 0
 
                                 logging.info(
-                                    f"Узел {node_name} восстановлен в {timestamp_reconnect} после {attempts} попыток."
+                                    f"Узел {node_name} восстановлен в "
+                                    f"{timestamp_reconnect} после {attempts} попыток."
                                 )
                                 self.notifier.send_message(
                                     Responses.get_message(
@@ -164,7 +167,9 @@ class NodeMonitor:
                                     "%Y-%m-%d %H:%M:%S"
                                 )
                                 logging.warning(
-                                    f"Узел {node_name} ({node_ip}) не переподключен. Попытка {i + 1}/{max_checks}. Время: {timestamp_attempt}"
+                                    f"Узел {node_name} ({node_ip}) не переподключен. "
+                                    f"Попытка {i + 1}/{max_checks}. "
+                                    f"Время: {timestamp_attempt}"
                                 )
                                 if Config.LOG_LEVEL == "DEBUG":
                                     self.notifier.send_message(
@@ -185,7 +190,8 @@ class NodeMonitor:
                                 "%Y-%m-%d %H:%M:%S"
                             )
                             logging.error(
-                                f"Не удалось переподключить узел {node_name} в {timestamp_failure}. Попытки: {max_checks}"
+                                f"Не удалось переподключить узел {node_name} "
+                                f"в {timestamp_failure}. Попытки: {max_checks}"
                             )
                             self.notifier.send_message(
                                 Responses.get_message(
