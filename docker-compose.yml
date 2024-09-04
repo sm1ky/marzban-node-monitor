@@ -1,7 +1,7 @@
 networks:
   monitor_network:
     driver: bridge
-    internal: true  
+    internal: false
 
 services:
   marzban-monitor:
@@ -14,12 +14,18 @@ services:
       - monitor_network
     volumes:
       - .:/app
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
   redis:
     image: redis:latest
     restart: unless-stopped
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
-    command: redis-server --requirepass ${REDIS_PASSWORD} --bind 0.0.0.0 --port ${REDIS_PORT} --databases ${REDIS_DB}
+    command: redis-server --requirepass ${REDIS_PASSWORD} --bind 0.0.0.0 --port ${REDIS_PORT}
     networks:
       - monitor_network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
