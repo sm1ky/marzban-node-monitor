@@ -185,7 +185,10 @@ class NodeMonitor:
                                     )
                                 time.sleep(5)
 
-                        if node_status["status"] != "connected":
+                        if (
+                            node_status["status"] != "connected"
+                            and self.redis.get(node_redis_key) != b"disconnected"
+                        ):
                             timestamp_failure = datetime.now().strftime(
                                 "%Y-%m-%d %H:%M:%S"
                             )
