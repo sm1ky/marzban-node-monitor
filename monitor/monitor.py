@@ -117,7 +117,6 @@ class NodeMonitor:
                                 ),
                                 parse_mode="HTML",
                             )
-                            self.redis.set(node_redis_key, "disconnected")
                             self.redis.set(node_disconnect_time_key, time.time())
 
                         self.api.reconnect_node(node_id)
