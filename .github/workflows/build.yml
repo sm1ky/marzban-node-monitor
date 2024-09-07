@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - production
-      - develompent
+      - development
   pull_request:
     branches:
       - production
-      - develompent
+      - development
 
 jobs:
   build:
