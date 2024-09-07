@@ -5,9 +5,10 @@ networks:
 
 services:
   marzban-monitor:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: marzban-node-monitor:latest
     env_file: .env
     restart: unless-stopped
     networks:

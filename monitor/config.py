@@ -5,16 +5,21 @@ load_dotenv()
 
 
 class Config:
-    MARZBAN_BASE_URL = os.getenv("MARZBAN_BASE_URL", "https://example.com/api")
-    MARZBAN_USERNAME = os.getenv("MARZBAN_USERNAME", "admin")
-    MARZBAN_PASSWORD = os.getenv("MARZBAN_PASSWORD", "PASSWORD")
-    TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "TOKEN")
-    TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "-1002178231")
-    REDIS_HOST = os.getenv("REDIS_HOST", "redis")
-    REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
-    REDIS_DB = int(os.getenv("REDIS_DB", 1))
-    REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "PASSWORD")
-    LOG_LEVEL = os.getenv("LOG_LEVEL", "DEFAULT")
+    MARZBAN_BASE_URL = os.getenv("MARZBAN_BASE_URL", "https://example.com/api").strip()
+    MARZBAN_USERNAME = os.getenv("MARZBAN_USERNAME", "admin").strip()
+    MARZBAN_PASSWORD = os.getenv("MARZBAN_PASSWORD", "PASSWORD").strip()
+    TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "TOKEN").strip()
+    TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "-1002178231").strip()
+    TELEGRAM_THREAD_CHAT_ID = os.getenv("TELEGRAM_THREAD_CHAT_ID", "").strip()
+    REDIS_HOST = os.getenv("REDIS_HOST", "redis").strip()
+    REDIS_PORT = int(os.getenv("REDIS_PORT", 6379).strip())
+    REDIS_DB = int(os.getenv("REDIS_DB", 1).strip())
+    REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "PASSWORD").strip()
+    LOG_LEVEL = os.getenv("LOG_LEVEL", "DEFAULT").strip().upper()
+    VALID_LOG_LEVELS = {"DEBUG", "INFO"}
+
+    if LOG_LEVEL not in VALID_LOG_LEVELS:
+        LOG_LEVEL = "INFO"
 
 
 class Responses:
