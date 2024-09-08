@@ -5,9 +5,7 @@ networks:
 
 services:
   marzban-monitor:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: __sm1ky__/marzban-node-monitor:latest
     env_file: .env
     restart: unless-stopped
     networks:
