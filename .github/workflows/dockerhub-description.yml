@@ -2,7 +2,7 @@ name: Update Docker Hub Description
 on:
   push:
     branches:
-      - main
+      - production
     paths:
       - README.md
       - README_ru.md
