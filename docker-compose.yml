@@ -5,15 +5,11 @@ networks:
 
 services:
   marzban-monitor:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: sm1kyx/marzban-node-monitor:latest
     env_file: .env
     restart: unless-stopped
     networks:
       - monitor_network
-    volumes:
-      - .:/app
     dns:
       - 8.8.8.8
       - 8.8.4.4
