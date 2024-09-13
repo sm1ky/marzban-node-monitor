@@ -1,12 +1,14 @@
-name: Проверка работоспособности скрипта
+name: Check syntax and build image
 
 on:
   push:
     branches:
       - production
+      - development
   pull_request:
     branches:
       - production
+      - development
 
 jobs:
   build:
