@@ -14,6 +14,8 @@ class Config:
     REDIS_HOST = os.getenv("REDIS_HOST", "redis").strip()
     REDIS_PORT = int(os.getenv("REDIS_PORT", 6379).strip())
     REDIS_DB = int(os.getenv("REDIS_DB", 1).strip())
+    TELEGRAM_LOGS = os.getenv("TELEGRAM_LOGS", "true").strip()
+    TELEGRAM_LOGS = True if TELEGRAM_LOGS.lower() == "true" else False
     REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "PASSWORD").strip()
     LOG_LEVEL = os.getenv("LOG_LEVEL", "DEFAULT").strip().upper()
     VALID_LOG_LEVELS = {"DEBUG", "INFO"}

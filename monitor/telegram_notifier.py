@@ -10,12 +10,15 @@ class TelegramNotifier:
         self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
 
     def send_message(self, message, parse_mode: str = "HTML"):
-        data = {"chat_id": self.chat_id, "text": message, "parse_mode": parse_mode}
+        if Config.TELEGRAM_LOGS: 
+            data = {"chat_id": self.chat_id, "text": message, "parse_mode": parse_mode}
 
-        if self.thread_chat_id:
-            data["message_thread_id"] = self.thread_chat_id
+            if self.thread_chat_id:
+                data["message_thread_id"] = self.thread_chat_id
 
-        try:
-            httpx.post(self.api_url, data=data)
-        except httpx.HTTPError as e:
-            print(f"Failed to send message to Telegram: {e}")
+            try:
+                httpx.post(self.api_url, data=data)
+            except httpx.HTTPError as e:
+                print(f"Failed to send message to Telegram: {e}")
+        else:
+            print(f"Telegram logs are disabled. Message not sent: {message}")

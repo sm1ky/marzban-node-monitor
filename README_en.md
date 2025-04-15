@@ -52,6 +52,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
     REDIS_PASSWORD=PASSWORD
     LOG_LEVEL=DEFAULT
     LANG=en
+    TELEGRAM_LOGS=true
     ```
     
 ### Start Docker Containers
