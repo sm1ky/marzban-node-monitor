@@ -10,7 +10,7 @@ class TelegramNotifier:
         self.api_url = f"https://api.telegram.org/bot{self.token}/sendMessage"
 
     def send_message(self, message, parse_mode: str = "HTML"):
-        if Config.TELEGRAM_LOGS: 
+        if Config.TELEGRAM_LOGS:
             data = {"chat_id": self.chat_id, "text": message, "parse_mode": parse_mode}
 
             if self.thread_chat_id:
